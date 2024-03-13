@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Exceptions/DaoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Exceptions/DaoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" afterDir="false" />
+    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="Add comments for features everyone does">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mysqlSetup.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +14,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "EricHanJf"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4d32b0a4-d604-4340-b8c4-142317ffa066" />
+        <option name="url" value="https://github.com/EricHanJf/oopCA5.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 7
@@ -37,6 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/xhanhan/Library/CloudStorage/OneDrive-DundalkInstituteofTechnology/Year2 OO Programming/oopCA5/src/main/java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,6 +57,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.TaskObjects" />
       <recent name="org.example.Exceptions" />
@@ -97,11 +108,56 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710262382135</updated>
-      <workItem from="1710262383204" duration="3342000" />
+      <workItem from="1710262383204" duration="4365000" />
     </task>
+    <task id="LOCAL-00001" summary="Add comments for features everyone does">
+      <option name="closed" value="true" />
+      <created>1710327485007</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710327485007</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add comments for features everyone does">
+      <option name="closed" value="true" />
+      <created>1710327496412</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710327496412</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add comments for features everyone does">
+      <option name="closed" value="true" />
+      <created>1710327510772</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710327510772</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add comments for features everyone does">
+      <option name="closed" value="true" />
+      <created>1710327524262</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710327524262</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add comments for features everyone does">
+      <option name="closed" value="true" />
+      <created>1710327533585</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710327533585</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add comments for features everyone does" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add comments for features everyone does" />
   </component>
 </project>
