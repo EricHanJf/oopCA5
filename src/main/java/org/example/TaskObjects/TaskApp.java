@@ -1,16 +1,22 @@
-package com.dkit.oop.sd2.TaskObjects;
+package org.example.TaskObjects;
 
-import com.dkit.oop.sd2.DAOs.MySqlTaskDAO;
-import com.dkit.oop.sd2.DAOs.TaskDaoInterface;
-import com.dkit.oop.sd2.DTOs.Task;
-import com.dkit.oop.sd2.Exceptions.DaoException;
+import org.example.DAOs.MySqlTaskDAO;
+import org.example.DAOs.TaskDaoInterface;
+import org.example.DTOs.Task;
+import org.example.Exceptions.DaoException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-//meghan
-
 public class TaskApp {
+
+    private Scanner sc = new Scanner(System.in);
+    private TaskDaoInterface taskDao;
+
+    public TaskApp(TaskDaoInterface taskDao) {
+        this.taskDao = taskDao;
+    }
 
     public static void main(String[] args) {
         TaskDaoInterface taskDao = new MySqlTaskDAO();
@@ -21,22 +27,16 @@ public class TaskApp {
             taskApp.handleMenu();
         }
     }
-    Scanner sc = new Scanner(System.in);
-    private TaskDaoInterface taskDao;
-
-    public TaskApp(TaskDaoInterface taskDao) {
-        this.taskDao = taskDao;
-    }
 
     public void displayMenu() {
         System.out.println("1. Display All Tasks");
         System.out.println("2. Display Task by ID");
         System.out.println("3. Delete Task by ID");
-        System.out.println("4. Exit");
+        System.out.println("4. Add New Task");
+        System.out.println("5. Exit");
     }
 
     public void handleMenu() {
-
         String choice = sc.nextLine();
 
         switch (choice) {
@@ -50,16 +50,19 @@ public class TaskApp {
                 deleteTaskById();
                 break;
             case "4":
+                insertTask();
+                break;
+            case "5":
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
-                System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+                System.out.println("Invalid choice. Please enter a number between 1 and 5.");
         }
     }
 
-    /**
-     * Meghan Keightley 9 Mar 2024.
-     */
+    /*
+    Jianfeng Han 12 Mar 2024
+    * */
     private void displayAllTasks() {
         try {
             List<Task> allTasks = taskDao.getAllTasks();
@@ -70,17 +73,19 @@ public class TaskApp {
         }
     }
 
-
+    /**
+     * Meghan Keightley 9 Mar 2024
+     */
     private void displayTaskById() {
         try {
             System.out.print("Enter Task ID: ");
-            int Id = Integer.parseInt(sc.nextLine());
+            int id = Integer.parseInt(sc.nextLine());
 
-            Task task = taskDao.getTaskById(Id);
+            Task task = taskDao.getTaskById(id);
             if (task != null) {
-                System.out.println("Task by ID " + Id + ": " + task);
+                System.out.println("Task by ID " + id + ": " + task);
             } else {
-                System.out.println("Task with ID " + Id + " not found.");
+                System.out.println("Task with ID " + id + " not found.");
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a valid number for Task ID.");
@@ -89,15 +94,15 @@ public class TaskApp {
         }
     }
 
-    /**
-     * @param tasks
-     */
     private void displayTasks(List<Task> tasks) {
         for (Task task : tasks) {
             System.out.println(task);
         }
     }
 
+    /**
+     * Meghan Keightley 9 Mar 2024
+     */
     private void deleteTaskById() {
         try {
             System.out.print("Enter Task ID to delete: ");
@@ -115,6 +120,37 @@ public class TaskApp {
             System.out.println("Error deleting task: " + e.getMessage());
         }
     }
+    /*Feature 4 - inserting Task for tony*/
+    private void insertTask() {
+        System.out.println("Task Title:");
+        String title = sc.nextLine();
+
+        System.out.println("Task Status (DONE, PROGRESS, OPEN):");
+        String status = sc.nextLine();
+
+        System.out.println("Task Priority (CRITICAL, HIGH, MEDIUM, LOW, MIN):");
+        String priority = sc.nextLine();
+
+        System.out.println("Task Description:");
+        String description = sc.nextLine();
+
+        System.out.println("Task Due Date (yyyy-MM-dd):");
+        String dateString = sc.nextLine();
+        Date dueDate = parseDate(dateString);
+
+        Task newTask = new Task(title, status, priority, description, dueDate);
+
+        try {
+            taskDao.insertTask(newTask);
+            System.out.println("Task inserted successfully!");
+        } catch (DaoException e) {
+            System.out.println("Error inserting task: " + e.getMessage());
+        }
+    }
+
+    private Date parseDate(String dateString) {
+        // Implement date parsing logic here
+        // For simplicity, I'm just returning the current date
+        return new Date();
+    }
 }
-
-
