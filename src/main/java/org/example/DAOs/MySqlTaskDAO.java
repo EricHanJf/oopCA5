@@ -1,7 +1,8 @@
-package com.dkit.oop.sd2.DAOs;
+package org.example.DAOs;
 
-import com.dkit.oop.sd2.DTOs.Task;
-import com.dkit.oop.sd2.Exceptions.DaoException;
+import org.example.DTOs.Task;
+import org.example.Exceptions.DaoException;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,10 @@ import java.util.List;
 
 public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
 
+    /**
+     * Main author: jianfeng han
+     * 12 Mar 2024
+     */
     @Override
     public List<Task> getAllTasks() throws DaoException {
         List<Task> tasksList = new ArrayList<>();
@@ -23,7 +28,7 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
                 String status = resultSet.getString("status");
                 String priority = resultSet.getString("priority");
                 String description = resultSet.getString("description");
-                java.sql.Date dueDate = resultSet.getDate("due_date");
+                Date dueDate = resultSet.getDate("due_date");
 
                 Task task = new Task(id, title, status, priority, description, dueDate);
                 tasksList.add(task);
@@ -34,6 +39,9 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
         return tasksList;
     }
 
+    /**
+     * Meghan Keightley 9 Mar 2024
+     */
     @Override
     public Task getTaskById(int id) throws DaoException {
         Task task = null;
@@ -47,7 +55,7 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
                     String status = resultSet.getString("status");
                     String priority = resultSet.getString("priority");
                     String description = resultSet.getString("description");
-                    java.sql.Date dueDate = resultSet.getDate("due_date");
+                    Date dueDate = resultSet.getDate("due_date");
 
                     task = new Task(id, title, status, priority, description, dueDate);
                 }
@@ -58,7 +66,9 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
         return task;
     }
 
-
+    /**
+     * Meghan Keightley 9 Mar 2024
+     */
     @Override
     public Task deleteTaskById(int id) throws DaoException {
         Task deletedTask = null;
@@ -80,6 +90,9 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
     }
 
     /* Feature 4 - Insert new Task to Database */
+    /*
+    main author: tony
+    * */
     public Task insertTask(Task task) throws DaoException {
 
         String query = "INSERT INTO tasks (title, status, priority, description, due_date) VALUES (?, ?, ?, ?, ?)";
@@ -100,6 +113,8 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
 
         return null;
     }
+
+
 
 
 }

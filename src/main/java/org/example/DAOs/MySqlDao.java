@@ -1,4 +1,4 @@
-package com.dkit.oop.sd2.DAOs;
+package org.example.DAOs;
 /** MySqlDao -
  * - implements functionality that is common to all MySQL DAOs
  * - i.e. getConection() and freeConnection()
@@ -7,9 +7,8 @@ package com.dkit.oop.sd2.DAOs;
  * of this code in every DAO class.
  *
  */
-
-import com.dkit.oop.sd2.DTOs.Task;
-import com.dkit.oop.sd2.Exceptions.DaoException;
+import org.example.DTOs.Task;
+import org.example.Exceptions.DaoException;
 
 import java.sql.*;
 
@@ -48,7 +47,10 @@ public class MySqlDao {
 
 
     }
-
+//commit
+    /**
+     * Meghan Keightley 9 Mar 2024
+     */
 
     public Task createTask(String title, String status, String priority,
                            String description, Date dueDate) throws DaoException {

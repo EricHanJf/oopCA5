@@ -1,4 +1,4 @@
-package com.dkit.oop.sd2.DTOs;
+package org.example.DTOs;
 
 import java.util.Date;
 
