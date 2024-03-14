@@ -93,6 +93,7 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
     /*
     main author: tony
     * */
+
     public Task insertTask(Task task) throws DaoException {
 
         String query = "INSERT INTO tasks (title, status, priority, description, due_date) VALUES (?, ?, ?, ?, ?)";
@@ -112,6 +113,34 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
         }
 
         return null;
+    }
+
+    /*
+    * Jianfeng Han 14 Mar 2024
+    * */
+    @Override
+    public Task updateTaskById(int id, Task updatetask) throws DaoException{
+        Task previousTask = null;
+        String query = "UPDATE tasks SET title=?,status=?,priority=?,description=?,due_date=? WHERE id=?";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            previousTask = getTaskById(id);
+            preparedStatement.setString(1,updatetask.getTitle());
+            preparedStatement.setString(2,updatetask.getStatus());
+            preparedStatement.setString(3,updatetask.getPriority());
+            preparedStatement.setString(4,updatetask.getDescription());
+            preparedStatement.setDate(5,new Date(updatetask.getDueDate().getTime()));
+            preparedStatement.setInt(6,id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected == 0){
+                throw new DaoException("No task found with ID: " + id);
+            }
+        }catch (SQLException e) {
+            throw new DaoException("Error in updateTaskById(): " + e.getMessage());
+        }
+        return previousTask;
     }
 
 

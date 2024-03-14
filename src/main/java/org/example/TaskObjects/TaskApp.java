@@ -33,7 +33,8 @@ public class TaskApp {
         System.out.println("2. Display Task by ID");
         System.out.println("3. Delete Task by ID");
         System.out.println("4. Add New Task");
-        System.out.println("5. Exit");
+        System.out.println("5. Update Task By ID");
+        System.out.println("6. Exit");
     }
 
     public void handleMenu() {
@@ -53,6 +54,9 @@ public class TaskApp {
                 insertTask();
                 break;
             case "5":
+                updateTask();
+                break;
+            case "6":
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
@@ -152,5 +156,50 @@ public class TaskApp {
         // Implement date parsing logic here
         // For simplicity, I'm just returning the current date
         return new Date();
+    }
+
+    /*Feature 5
+    * Jianfeng Han 14 Mar 2024
+    * */
+
+    private void updateTask(){
+        try{
+            System.out.println("Enter Task ID to update");
+            int taskid = Integer.parseInt(sc.nextLine());
+
+            Task exsitingTask = taskDao.getTaskById(taskid);
+            if(exsitingTask != null){
+                System.out.println("Existing Task Details:");
+                System.out.println(exsitingTask);
+                System.out.println("Task Title:");
+                String title = sc.nextLine();
+                System.out.println("Task Status (DONE, PROGRESS, OPEN):");
+                String status = sc.nextLine();
+                System.out.println("Task Priority (CRITICAL, HIGH, MEDIUM, LOW, MIN):");
+                String priority = sc.nextLine();
+                System.out.println("Task Description:");
+                String description = sc.nextLine();
+                System.out.println("Task Due Date (yyyy-MM-dd):");
+                String dateString = sc.nextLine();
+                Date dueDate = parseDate(dateString);
+
+                Task updatedTask = new Task(taskid, title, status, priority, description, dueDate);
+                Task previousTask = taskDao.updateTaskById(taskid, updatedTask);
+
+                if (previousTask != null) {
+                    System.out.println("Task with ID " + taskid + " updated successfully!");
+                    System.out.println("Previous Task Details:");
+                    System.out.println(previousTask);
+                }else{
+                    System.out.println("Task with ID " + taskid + " could not be updated.");
+                }
+            }else{
+                System.out.println("Task with ID " + taskid + " not found.");
+            }
+        }catch(NumberFormatException e){
+            System.out.println("Invalid input. Please enter a valid number for Task ID.");
+        }catch (DaoException e){
+            System.out.println("Error updating task: " + e.getMessage());
+        }
     }
 }

@@ -31,5 +31,10 @@ public interface TaskDaoInterface {
      */
     /*Feature4- */
     Task insertTask(Task newTask) throws DaoException;
+
+    /*Feature 5
+    * Jianfeng Han 14 Mar 2024
+    * */
+    Task updateTaskById(int id, Task updatetask) throws DaoException;
 }
 
