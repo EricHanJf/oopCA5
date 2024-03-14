@@ -99,8 +99,18 @@ public class TaskApp {
     }
 
     private void displayTasks(List<Task> tasks) {
+
+//        for (Task task : tasks) {
+//            System.out.println(task);
+//        }
+        System.out.printf("%-5s | %-35s | %-10s | %-10s | %-40s | %-25s%n",
+                "ID", "Title", "Status", "Priority", "Description", "Due Date");
+        System.out.println("========================================================================================================================================");
+
         for (Task task : tasks) {
-            System.out.println(task);
+            System.out.printf("%-5d | %-35s | %-10s | %-10s | %-40s | %-25s%n",
+                    task.getTaskId(), task.getTitle(), task.getStatus(), task.getPriority(),
+                    task.getDescription(), task.getDueDate());
         }
     }
 

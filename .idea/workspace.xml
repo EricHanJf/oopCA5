@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="">
+    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="updated feature 5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +101,7 @@
       <workItem from="1710448285785" duration="20000" />
       <workItem from="1710448314400" duration="57000" />
       <workItem from="1710448381167" duration="57000" />
-      <workItem from="1710448451124" duration="3822000" />
+      <workItem from="1710448451124" duration="5896000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments for features everyone does">
       <option name="closed" value="true" />
@@ -161,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710329149689</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updated feature 5">
+      <option name="closed" value="true" />
+      <created>1710452798655</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710452798655</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +176,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add comments for features everyone does" />
     <MESSAGE value="Add sql file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add sql file" />
+    <MESSAGE value="updated feature 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated feature 5" />
   </component>
 </project>
