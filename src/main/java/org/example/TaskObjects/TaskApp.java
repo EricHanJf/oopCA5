@@ -34,7 +34,8 @@ public class TaskApp {
         System.out.println("3. Delete Task by ID");
         System.out.println("4. Add New Task");
         System.out.println("5. Update Task By ID");
-        System.out.println("6. Exit");
+        System.out.println("6. Filter by Status & Priority");
+        System.out.println("7. Exit");
     }
 
     public void handleMenu() {
@@ -57,6 +58,9 @@ public class TaskApp {
                 updateTask();
                 break;
             case "6":
+                filterTasks();
+                break;
+            case "7":
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
@@ -171,7 +175,6 @@ public class TaskApp {
     /*Feature 5
     * Jianfeng Han 14 Mar 2024
     * */
-
     private void updateTask(){
         try{
             System.out.println("Enter Task ID to update");
@@ -210,6 +213,30 @@ public class TaskApp {
             System.out.println("Invalid input. Please enter a valid number for Task ID.");
         }catch (DaoException e){
             System.out.println("Error updating task: " + e.getMessage());
+        }
+    }
+    /*Feature 6
+     * Meghan Keightley 9 Mar 2024
+     * */
+    private void filterTasks() {
+        Task filter = new Task();
+
+        System.out.println("Enter Filter Criteria:");
+        System.out.print("Task Status (DONE, PROGRESS, OPEN): ");
+        filter.setStatus(sc.nextLine().toUpperCase());
+        System.out.print("Task Priority (CRITICAL, HIGH, MEDIUM, LOW, MIN): ");
+        filter.setPriority(sc.nextLine());
+
+        try {
+            List<Task> filteredTasks = taskDao.FilteringTasks(filter);
+            if (!filteredTasks.isEmpty()) {
+                System.out.println("Filtered Tasks:");
+                displayTasks(filteredTasks);
+            } else {
+                System.out.println("No tasks found matching the filter criteria.");
+            }
+        } catch (DaoException e) {
+            System.out.println("Error filtering tasks: " + e.getMessage());
         }
     }
 }

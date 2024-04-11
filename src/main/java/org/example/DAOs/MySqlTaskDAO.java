@@ -143,7 +143,36 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
         return previousTask;
     }
 
+    @Override
+    public List<Task> FilteringTasks(Task filter) throws DaoException {
+        List<Task> filteredTasks = new ArrayList<>();
+        // Assuming that each attribute in the Task class represents a filtering criterion
+        String query = "SELECT * FROM tasks WHERE status = ? AND priority = ?"; // Add more conditions as needed
+        try (Connection connection = this.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, filter.getStatus());
+            preparedStatement.setString(2, filter.getPriority());
+            // Set other parameters based on additional attributes in the Task class
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String title = resultSet.getString("title");
+                    String status = resultSet.getString("status");
+                    String priority = resultSet.getString("priority");
+                    String description = resultSet.getString("description");
+                    Date dueDate = resultSet.getDate("due_date");
+                    Task task = new Task(id, title, status, priority, description, dueDate);
+                    filteredTasks.add(task);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error in findTasksUsingFilter(): " + e.getMessage());
+        }
+        return filteredTasks;
+    }
 
 
 
-}
+
+
+    }

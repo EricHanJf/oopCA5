@@ -36,5 +36,11 @@ public interface TaskDaoInterface {
     * Jianfeng Han 14 Mar 2024
     * */
     Task updateTaskById(int id, Task updatetask) throws DaoException;
+
+    /**
+     * Meghan Keightley 15 Mar 2024
+     */
+    // Feature 6 -  Get list of entities matching a filter (based on DTO object)
+    List<Task> FilteringTasks(Task filter) throws DaoException;
 }
 
