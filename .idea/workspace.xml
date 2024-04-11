@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="fixed displayTask method it would display like a table">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/TaskObjects/DisplayTaskByIdTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" afterDir="false" />
-    </list>
+    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="add feature6 in the task app" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -60,12 +59,13 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "EricBranch",
     "last_opened_file_path": "/Users/xhanhan/Library/CloudStorage/OneDrive-DundalkInstituteofTechnology/Year2 OO Programming/oopCA5/src/main/java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/xhanhan/Library/CloudStorage/OneDrive-DundalkInstituteofTechnology/Year2 OO Programming/oopCA5/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -108,6 +108,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.TaskApp" />
+        <item itemvalue="Application.TaskApp" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +131,7 @@
       <workItem from="1711147279245" duration="2270000" />
       <workItem from="1712587221449" duration="1595000" />
       <workItem from="1712744143909" duration="3632000" />
-      <workItem from="1712850721160" duration="1918000" />
+      <workItem from="1712850721160" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments for features everyone does">
       <option name="closed" value="true" />
@@ -204,17 +205,37 @@
       <option name="project" value="LOCAL" />
       <updated>1710454643411</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add feature6 in the task app">
+      <option name="closed" value="true" />
+      <created>1712852944430</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712852944430</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add comments for features everyone does" />
     <MESSAGE value="Add sql file" />
     <MESSAGE value="updated feature 5" />
     <MESSAGE value="fixed displayTask method it would display like a table" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed displayTask method it would display like a table" />
+    <MESSAGE value="add feature6 in the task app" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature6 in the task app" />
   </component>
 </project>
