@@ -221,6 +221,8 @@ public class TaskApp {
     private void filterTasks() {
         Task filter = new Task();
 
+
+
         System.out.println("Enter Filter Criteria:");
         System.out.print("Task Status (DONE, PROGRESS, OPEN): ");
         filter.setStatus(sc.nextLine().toUpperCase());
