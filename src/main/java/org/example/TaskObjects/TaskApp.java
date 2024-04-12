@@ -4,6 +4,7 @@ import org.example.DAOs.MySqlTaskDAO;
 import org.example.DAOs.TaskDaoInterface;
 import org.example.DTOs.Task;
 import org.example.Exceptions.DaoException;
+import org.example.JSON.JsonConv;
 
 import java.util.Date;
 import java.util.List;
@@ -11,11 +12,14 @@ import java.util.Scanner;
 
 public class TaskApp {
 
+
     private Scanner sc = new Scanner(System.in);
     private TaskDaoInterface taskDao;
+    private JsonConv jsonConv; //add json convert field
 
     public TaskApp(TaskDaoInterface taskDao) {
         this.taskDao = taskDao;
+        this.jsonConv = new JsonConv();
     }
 
     public static void main(String[] args) {
@@ -35,6 +39,8 @@ public class TaskApp {
         System.out.println("4. Add New Task");
         System.out.println("5. Update Task By ID");
         System.out.println("6. Filter by Status & Priority");
+        System.out.println("7. Convert List of Entities to a JSON String ");
+        System.out.println("8. Convert a single Entity by Key as a JSON String  ");
         System.out.println("7. Exit");
     }
 
@@ -61,6 +67,13 @@ public class TaskApp {
                 filterTasks();
                 break;
             case "7":
+                convertTasksListToJson();
+                break;
+            case "8":
+                convertTaskToJson();
+                break;
+
+            case "9":
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
@@ -221,8 +234,6 @@ public class TaskApp {
     private void filterTasks() {
         Task filter = new Task();
 
-
-
         System.out.println("Enter Filter Criteria:");
         System.out.print("Task Status (DONE, PROGRESS, OPEN): ");
         filter.setStatus(sc.nextLine().toUpperCase());
@@ -241,4 +252,46 @@ public class TaskApp {
             System.out.println("Error filtering tasks: " + e.getMessage());
         }
     }
+
+    // Feature 7 - Convert List of Entities to a JSON String
+    /*Feature 7
+     * Jianfeng Han  11 Apr 2024
+     * */
+    private void convertTasksListToJson() {
+        try {
+            List<Task> allTasks = taskDao.getAllTasks();
+            String json = jsonConv.entitiesListToJson(allTasks);
+            System.out.println("All Tasks in JSON format:");
+            System.out.println(json);
+        } catch (DaoException e) {
+            System.out.println("Error retrieving tasks: " + e.getMessage());
+        }
+    }
+
+// Feature 8 - Convert a single Entity by Key as a JSON String
+/*Feature 8
+ * Jianfeng Han  11 Apr 2024
+ * */
+private void convertTaskToJson() {
+    try {
+        System.out.print("Enter Task ID: ");
+        int id = Integer.parseInt(sc.nextLine());
+
+        Task task = taskDao.getTaskById(id);
+        if (task != null) {
+            String json = jsonConv.entityToJson(task);
+            System.out.println("Task by ID " + id + " in JSON format:");
+            System.out.println(json);
+        } else {
+            System.out.println("Task with ID " + id + " not found.");
+        }
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter a valid number for Task ID.");
+    } catch (DaoException e) {
+        System.out.println("Error retrieving task: " + e.getMessage());
+    }
+}
+
+
+
 }

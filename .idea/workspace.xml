@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="couldn't push">
+    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="Make small changes to see if github can work properly">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/JSON/JsonConv.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,7 +75,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/xhanhan/Library/CloudStorage/OneDrive-DundalkInstituteofTechnology/Year2 OO Programming/oopCA5/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "vcs.Git",
@@ -93,7 +99,33 @@
       <recent name="org.example.DAOs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Multithreaded.Client" />
+      <module name="OOP_CA5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Multithreaded.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Multithreaded.Server" />
+      <module name="OOP_CA5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Multithreaded.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TaskApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.TaskObjects.TaskApp" />
       <module name="OOP_CA5" />
@@ -109,6 +141,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.TaskApp" />
         <item itemvalue="Application.TaskApp" />
       </list>
@@ -134,6 +168,7 @@
       <workItem from="1712587221449" duration="1595000" />
       <workItem from="1712744143909" duration="3632000" />
       <workItem from="1712850721160" duration="3485000" />
+      <workItem from="1712854516498" duration="11860000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments for features everyone does">
       <option name="closed" value="true" />
@@ -223,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712853722311</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Make small changes to see if github can work properly">
+      <option name="closed" value="true" />
+      <created>1712854756623</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712854756623</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +290,7 @@
     <MESSAGE value="fixed displayTask method it would display like a table" />
     <MESSAGE value="add feature6 in the task app" />
     <MESSAGE value="couldn't push" />
-    <option name="LAST_COMMIT_MESSAGE" value="couldn't push" />
+    <MESSAGE value="Make small changes to see if github can work properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make small changes to see if github can work properly" />
   </component>
 </project>
