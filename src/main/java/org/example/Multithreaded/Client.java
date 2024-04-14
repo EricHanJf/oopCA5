@@ -8,40 +8,42 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 public class Client {
-    final String SERVER_ADDRESS = "localhost";
-    final int SERVER_PORT = 8888;
     public static void main(String[] args) {
         Client client = new Client();
         client.start();
     }
 
     public void start() {
-        try (Socket socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
+        try (Socket socket = new Socket("localhost", 8888);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in))) {
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true)){
 
-            System.out.println("Connected to server.");
+//            BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in)))
+//            System.out.println("Connected to server.");
+            System.out.println("Client message: The Client is running and has connected to the server");
 
             // Accept user input
 //            System.out.println("Enter the ID of the entity you want to display:");
+            Scanner sc = new Scanner(System.in);
             while (true) {
                 displayMenu();
                 System.out.println("Please Enter Your Choice");
-
-                String Choice = consoleInput.readLine();
-                switch (Choice) {
-                    case "1":
-                        displayEntityById(out, in, consoleInput);
+                int choice = sc.nextInt();
+//                String Choice = consoleInput.readLine();
+                switch (choice) {
+                    case 1:
+                        displayEntityById(out, in, sc);
                         break;
-                    case "2":
-                        displayAllEntities(out, in);
+                    case 2:
+//                        displayAllEntities(out, in);
                         break;
-                    case "0":
+                    case 0:
                         System.out.println("Exiting...");
                         return;
                     default:
@@ -75,28 +77,50 @@ public class Client {
         System.out.println("=========================================");
     }
 
-    private void displayAllEntities(PrintWriter out, BufferedReader in)throws IOException{
-        out.println("get all");
+//    private void displayAllEntities(PrintWriter out, BufferedReader in)throws IOException{
+//        out.println("get all");
+//
+//        System.out.println("Response from server (All Entities):");
+//        String line;
+//        while((line = in.readLine()) != null){
+//            System.out.println(line);
+//        }
+//    }
 
-        System.out.println("Response from server (All Entities):");
-        String line;
-        while((line = in.readLine()) != null){
-            System.out.println(line);
-        }
-    }
-
-    private void displayEntityById(PrintWriter out, BufferedReader in, BufferedReader consoleInput) throws IOException {
+    private void displayEntityById(PrintWriter out, BufferedReader in, Scanner sc) throws IOException {
         // Accept user input
+        try{
         System.out.println("Enter the ID of the entity you want to display:");
-        String entityId = consoleInput.readLine();
+//        String entityId = consoleInput.readLine();
+        int entityId = sc.nextInt();
+        sc.nextInt();
 
-        // Send request to server
-        out.println("get " + entityId);
+        out.println("DISPLAY_BY_ID");
+        out.println(entityId);
+        out.flush();
 
-        // Receive and display response
-        String response = in.readLine();
-        System.out.println("Response from server:");
-        System.out.println(response);
+        String jsonData = (String) in.readLine();
+
+//        Task task = JsonConv.fromJson(jsonData, Task.class);
+
+        if (!jsonData.equals("null")) {
+            Gson gson = new Gson();
+            Task task = gson.fromJson(jsonData, Task.class);
+
+            System.out.println("Entity details:");
+            System.out.println("Task ID: " + task.getTaskId());
+            System.out.println("Title: " + task.getTitle());
+            System.out.println("Status: " + task.getStatus());
+            System.out.println("Priority: " + task.getPriority());
+            System.out.println("Description: " + task.getDescription());
+            System.out.println("Due Date: " + task.getDueDate());
+        } else {
+            System.out.println("Entity not found.");
+        }
+    }catch (JsonSyntaxException e) {
+            System.err.println("Error communicating with server: " + e.getMessage());
+        }
+
     }
 
 }

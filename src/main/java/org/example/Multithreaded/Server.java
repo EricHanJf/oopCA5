@@ -1,5 +1,6 @@
 package org.example.Multithreaded;
 
+import com.google.gson.Gson;
 import org.example.DAOs.MySqlTaskDAO;
 import org.example.DAOs.TaskDaoInterface;
 import org.example.DTOs.Task;
@@ -12,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 public class Server {
 //    private static final int PORT = 8888;
@@ -76,60 +78,83 @@ class ClientHandler implements Runnable {
     private final BufferedReader socketReader;
     private final PrintWriter socketWriter;
     private final TaskDaoInterface taskDao;
-    private final JsonConv jsonConverter;
+    private final int clientNumber;
+//    private final JsonConv jsonConverter;
 
     public ClientHandler(Socket clientSocket, int clientNumber) {
         try {
             this.socketReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             this.socketWriter = new PrintWriter(clientSocket.getOutputStream(), true);
-            this.taskDao = new MySqlTaskDAO(); // Instantiate the TaskDaoInterface implementation
-            this.jsonConverter = new JsonConv(); // Instantiate the JsonConv
+            this.clientNumber = clientNumber;
+            this.taskDao = new MySqlTaskDAO();
         } catch (IOException e) {
             throw new RuntimeException("Error initializing client handler", e);
         }
     }
 
+
+
     @Override
     public void run() {
-        String request;
         try {
-            while ((request = socketReader.readLine()) != null) {
-                System.out.println("Server: (ClientHandler): Read command from client: " + request);
-
-                // Process the request and send response accordingly
-                String response = handleRequest(request);
-                socketWriter.println(response);
+            String requestType = socketReader.readLine();
+            switch (requestType) {
+                case "DISPLAY_BY_ID":
+                    displayEntityById();
+                    break;
+                default:
+                    System.out.println("Unsupported request type: " + requestType);
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                socketReader.close();
-                socketWriter.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("Server: (ClientHandler): Handler is terminating...");
     }
 
-    private String handleRequest(String request) {
-        String[] tokens = request.split("\\s+");
-        String command = tokens[0].toLowerCase();
+    private void displayEntityById() {
         try {
-            switch (command) {
-                case "get": // Example: "get 1" (Get task by ID)
-                    int taskId = Integer.parseInt(tokens[1]);
-                    Task task = taskDao.getTaskById(taskId);
-                    return jsonConverter.entityToJson(task);
-                // Add more cases for other commands (e.g., insert, update, delete, filter) as needed
-                default:
-                    return "Unknown command: " + command;
+            int entityId = Integer.parseInt(socketReader.readLine());
+            Task task = taskDao.getTaskById(entityId);
+
+            if (task != null) {
+//                String jsonData = JsonConv.TaskConversionToJson(task);
+//                socketWriter.println(jsonData);
+//                socketWriter.flush();
+                Gson gson = new Gson();
+                String jsonData = gson.toJson(task); // Convert Task object to JSON
+                socketWriter.println(jsonData);
+                socketWriter.flush();
+            } else {
+                socketWriter.println("null");
+                socketWriter.flush();
             }
-        } catch (DaoException e) {
-            return "Error: " + e.getMessage();
+        } catch (IOException | DaoException e) {
+            e.printStackTrace();
         }
     }
 }
+
+//    private String handleRequest(String request) {
+//        String[] tokens = request.split("\\s+");
+//        String command = tokens[0].toLowerCase();
+//        try {
+//            switch (command) {
+//                case "get": // Example: "get 1" (Get task by ID)
+//                    int taskId = Integer.parseInt(tokens[1]);
+//                    Task task = taskDao.getTaskById(taskId);
+//                   if(task != null){
+//                       String jsonTask = JsonConv.TaskConversionToJson(List.of(task));
+//                        return jsonTask;
+//                    }else {
+//                        return "Task not found for ID: " + taskId;
+//                    }
+//                    // Add more cases for other commands (e.g., insert, update, delete, filter) as needed
+//                default:
+//                    return "Unknown command: " + command;
+//            }
+//        } catch (DaoException e) {
+//            return "Error: " + e.getMessage();
+//        }
+//    }
+
 
 

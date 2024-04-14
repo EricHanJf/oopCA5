@@ -2,6 +2,7 @@ package org.example.DAOs;
 
 import org.example.DTOs.Task;
 import org.example.Exceptions.DaoException;
+import org.example.JSON.JsonConv;
 
 
 import java.sql.*;
@@ -119,28 +120,27 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
     * Jianfeng Han 14 Mar 2024
     * */
     @Override
-    public Task updateTaskById(int id, Task updatetask) throws DaoException{
-        Task previousTask = null;
-        String query = "UPDATE tasks SET title=?,status=?,priority=?,description=?,due_date=? WHERE id=?";
-
+    public Task updateTaskById(int id, Task updatedTask) throws DaoException {
         try (Connection connection = this.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            previousTask = getTaskById(id);
-            preparedStatement.setString(1,updatetask.getTitle());
-            preparedStatement.setString(2,updatetask.getStatus());
-            preparedStatement.setString(3,updatetask.getPriority());
-            preparedStatement.setString(4,updatetask.getDescription());
-            preparedStatement.setDate(5,new Date(updatetask.getDueDate().getTime()));
-            preparedStatement.setInt(6,id);
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "UPDATE tasks SET title = ?, status = ?, priority = ?, description = ?, due_date = ? WHERE id = ?")) {
+
+            preparedStatement.setString(1, updatedTask.getTitle());
+            preparedStatement.setString(2, updatedTask.getStatus());
+            preparedStatement.setString(3, updatedTask.getPriority());
+            preparedStatement.setString(4, updatedTask.getDescription());
+            preparedStatement.setDate(5, new Date(updatedTask.getDueDate().getTime()));
+            preparedStatement.setInt(6, id);
 
             int rowsAffected = preparedStatement.executeUpdate();
-            if(rowsAffected == 0){
-                throw new DaoException("No task found with ID: " + id);
+
+            if (rowsAffected > 0) {
+                return updatedTask;
             }
-        }catch (SQLException e) {
-            throw new DaoException("Error in updateTaskById(): " + e.getMessage());
+        } catch (SQLException e) {
+            throw new DaoException("Error updating task: " + e.getMessage());
         }
-        return previousTask;
+        return null;
     }
 
     @Override
@@ -170,9 +170,32 @@ public class MySqlTaskDAO extends MySqlDao implements TaskDaoInterface {
         }
         return filteredTasks;
     }
+//     * Meghan Keightley 9 Mar 2024
 
-
-
-
-
+    //    //converting to json
+    @Override
+    public String JsonConversionOfTasks() {
+        try {
+            List<Task> ConvertAllTasks = getAllTasks();
+            String json = JsonConv.TaskConversionToJson(ConvertAllTasks);
+            System.out.println("Json display of tasks:");
+            System.out.println(json);
+            return json;
+        } catch (DaoException e) {
+            System.out.println("Error converting tasks to JSON: " + e.getMessage());
+            return null;
+        }
     }
+
+    @Override
+    public String JsonFormEntityByKey(int taskId) throws DaoException {
+        Task task = getTaskById(taskId);
+        List<Task> singleTaskList = new ArrayList<>();
+        singleTaskList.add(task);
+        return JsonConv.TaskConversionToJson(singleTaskList);
+    }
+
+
+
+
+}

@@ -3,10 +3,13 @@ package org.example.TaskObjects;
 import org.example.DAOs.MySqlTaskDAO;
 import org.example.DAOs.TaskDaoInterface;
 import org.example.DTOs.Task;
+import org.example.Date.DateUtils;
 import org.example.Exceptions.DaoException;
 import org.example.JSON.JsonConv;
 
-import java.util.Date;
+import java.text.ParseException;
+//import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,13 +70,13 @@ public class TaskApp {
                 filterTasks();
                 break;
             case "7":
-                convertTasksListToJson();
+                JsonConversionOfTasks();
                 break;
             case "8":
-                convertTaskToJson();
+                JsonFormEntityByKey();
                 break;
 
-            case "9":
+            case "0":
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
@@ -179,11 +182,34 @@ public class TaskApp {
         }
     }
 
-    private Date parseDate(String dateString) {
-        // Implement date parsing logic here
-        // For simplicity, I'm just returning the current date
-        return new Date();
+//    private Date parseDate(String dateString) {
+//        // Implement date parsing logic here
+//        // For simplicity, I'm just returning the current date
+//        return new Date();
+//    }
+private Date parseDate(String dateString) {
+    try {
+        // Check if the input string is null or empty
+        if (dateString == null || dateString.isEmpty()) {
+            System.out.println("Error: Date string is empty.");
+            return null;
+        }
+
+        // Validate the length of the date string
+        if (dateString.length() != 10) {
+            System.out.println("Error: Invalid date format. Date string must be in the format yyyy-MM-dd.");
+            return null;
+        }
+
+        // Attempt to parse the date string
+        return (Date) DateUtils.parseDate(dateString);
+    } catch (ParseException e) {
+        // Handle parsing error
+        System.out.println("Error parsing date: " + e.getMessage());
+        return null;
     }
+}
+
 
     /*Feature 5
     * Jianfeng Han 14 Mar 2024
@@ -253,45 +279,60 @@ public class TaskApp {
         }
     }
 
-    // Feature 7 - Convert List of Entities to a JSON String
-    /*Feature 7
-     * Jianfeng Han  11 Apr 2024
-     * */
-    private void convertTasksListToJson() {
+    /**
+     * Meghan Keightley 7th April 2024
+     */
+    private void JsonConversionOfTasks() {
         try {
-            List<Task> allTasks = taskDao.getAllTasks();
-            String json = jsonConv.entitiesListToJson(allTasks);
-            System.out.println("All Tasks in JSON format:");
-            System.out.println(json);
+            List<Task> ConvertAllTasks = taskDao.getAllTasks();
+            String json = JsonConv.TaskConversionToJson(ConvertAllTasks);
+
+            StringBuilder cleanedUpJson = new StringBuilder();
+            String[] parts = json.split("},");
+            for (int i = 0; i < parts.length; i++) {
+                if (i != 0) {
+                    cleanedUpJson.append("},\n");
+                }
+                cleanedUpJson.append(parts[i].trim());
+            }
+
+            System.out.println("JSON representation of tasks:");
+            System.out.println(cleanedUpJson.toString());
         } catch (DaoException e) {
-            System.out.println("Error retrieving tasks: " + e.getMessage());
+            System.out.println("Error converting tasks to Json: " + e.getMessage());
         }
     }
 
-// Feature 8 - Convert a single Entity by Key as a JSON String
-/*Feature 8
- * Jianfeng Han  11 Apr 2024
- * */
-private void convertTaskToJson() {
-    try {
-        System.out.print("Enter Task ID: ");
-        int id = Integer.parseInt(sc.nextLine());
 
-        Task task = taskDao.getTaskById(id);
-        if (task != null) {
-            String json = jsonConv.entityToJson(task);
-            System.out.println("Task by ID " + id + " in JSON format:");
-            System.out.println(json);
-        } else {
-            System.out.println("Task with ID " + id + " not found.");
+
+    //    private void convertTaskToJson(Task task) {
+//        String jsonString = jsonConv.entityToJson(task);
+//        System.out.println("Task in JSON format:");
+//        System.out.println(jsonString);
+//    }
+    private void JsonFormEntityByKey() {
+        try {
+            System.out.print("Enter Task ID: ");
+            int taskId = Integer.parseInt(sc.nextLine());
+            String jsonTask = taskDao.JsonFormEntityByKey(taskId);
+            if (jsonTask != null) {
+                System.out.println("Json representation of task with ID " + taskId + ":");
+                String[] lines = jsonTask.split("\\r?\\n");
+                StringBuilder formattedJson = new StringBuilder();
+                for (int i = 0; i < lines.length; i++) {
+                    formattedJson.append(lines[i]);
+                    if (i < lines.length - 1) {
+                        formattedJson.append(",\n");
+                    }
+                }
+                System.out.println(formattedJson.toString());
+            } else {
+                System.out.println("Task with ID " + taskId + " not found.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number for Task ID.");
+        } catch (DaoException e) {
+            System.out.println("Error converting task to Json: " + e.getMessage());
         }
-    } catch (NumberFormatException e) {
-        System.out.println("Invalid input. Please enter a valid number for Task ID.");
-    } catch (DaoException e) {
-        System.out.println("Error retrieving task: " + e.getMessage());
     }
-}
-
-
-
 }
