@@ -55,5 +55,7 @@ public interface TaskDaoInterface {
      */
 //  Feature 8 -  Convert a single Entity by Key as a json String
     String JsonFormEntityByKey(int taskId) throws DaoException;
+
+
 }
 

@@ -3,13 +3,10 @@ package org.example.TaskObjects;
 import org.example.DAOs.MySqlTaskDAO;
 import org.example.DAOs.TaskDaoInterface;
 import org.example.DTOs.Task;
-import org.example.Date.DateUtils;
 import org.example.Exceptions.DaoException;
 import org.example.JSON.JsonConv;
 
-import java.text.ParseException;
-//import java.util.Date;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -182,34 +179,11 @@ public class TaskApp {
         }
     }
 
-//    private Date parseDate(String dateString) {
-//        // Implement date parsing logic here
-//        // For simplicity, I'm just returning the current date
-//        return new Date();
-//    }
-private Date parseDate(String dateString) {
-    try {
-        // Check if the input string is null or empty
-        if (dateString == null || dateString.isEmpty()) {
-            System.out.println("Error: Date string is empty.");
-            return null;
-        }
-
-        // Validate the length of the date string
-        if (dateString.length() != 10) {
-            System.out.println("Error: Invalid date format. Date string must be in the format yyyy-MM-dd.");
-            return null;
-        }
-
-        // Attempt to parse the date string
-        return (Date) DateUtils.parseDate(dateString);
-    } catch (ParseException e) {
-        // Handle parsing error
-        System.out.println("Error parsing date: " + e.getMessage());
-        return null;
+    private Date parseDate(String dateString) {
+        // Implement date parsing logic here
+        // For simplicity, I'm just returning the current date
+        return new Date();
     }
-}
-
 
     /*Feature 5
     * Jianfeng Han 14 Mar 2024
@@ -335,4 +309,9 @@ private Date parseDate(String dateString) {
             System.out.println("Error converting task to Json: " + e.getMessage());
         }
     }
+
+
+
+
+
 }

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="i made a menu for client side and also the first feature in client side is work, but the displayallentities couldn't work now.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Date/DateUtils.java" afterDir="false" />
+    <list default="true" id="65ef6fd8-1ef4-45f8-bdcd-92f3877e805b" name="Changes" comment="I tried changing the code of server and client. Now the server and client code can run, but errors will be reported and the data cannot be converted to json. This seems to be the reason for the duedate, now I'm confused on how to modify it.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/MySqlTaskDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAOs/TaskDaoInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/JSON/JsonConv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/JSON/JsonConv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Date/DateUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Multithreaded/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TaskObjects/TaskApp.java" afterDir="false" />
@@ -171,7 +168,7 @@
       <workItem from="1712587221449" duration="1595000" />
       <workItem from="1712744143909" duration="3632000" />
       <workItem from="1712850721160" duration="3485000" />
-      <workItem from="1712854516498" duration="31480000" />
+      <workItem from="1712854516498" duration="57654000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments for features everyone does">
       <option name="closed" value="true" />
@@ -277,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712909736370</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="I tried changing the code of server and client. Now the server and client code can run, but errors will be reported and the data cannot be converted to json. This seems to be the reason for the duedate, now I'm confused on how to modify it.">
+      <option name="closed" value="true" />
+      <created>1713055051655</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713055051655</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +308,7 @@
     <MESSAGE value="couldn't push" />
     <MESSAGE value="Make small changes to see if github can work properly" />
     <MESSAGE value="i made a menu for client side and also the first feature in client side is work, but the displayallentities couldn't work now." />
-    <option name="LAST_COMMIT_MESSAGE" value="i made a menu for client side and also the first feature in client side is work, but the displayallentities couldn't work now." />
+    <MESSAGE value="I tried changing the code of server and client. Now the server and client code can run, but errors will be reported and the data cannot be converted to json. This seems to be the reason for the duedate, now I'm confused on how to modify it." />
+    <option name="LAST_COMMIT_MESSAGE" value="I tried changing the code of server and client. Now the server and client code can run, but errors will be reported and the data cannot be converted to json. This seems to be the reason for the duedate, now I'm confused on how to modify it." />
   </component>
 </project>
